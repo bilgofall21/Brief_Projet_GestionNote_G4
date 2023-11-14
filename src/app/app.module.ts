@@ -13,6 +13,7 @@ import { UserApprenantComponent } from './Utilisateur/user-apprenant/user-appren
 import { UserProfesseurComponent } from './Utilisateur/user-professeur/user-professeur.component';
 import { HeaderDasboardComponent } from './Dashbord_admin/header-dasboard/header-dasboard.component';
 import { DashbordStatistiqueComponent } from './Dashbord_admin/dashbord-statistique/dashbord-statistique.component';
+import { AddNoteComponent } from './note/add-note/add-note.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { DashbordStatistiqueComponent } from './Dashbord_admin/dashbord-statisti
     UserApprenantComponent,
     UserProfesseurComponent,
     HeaderDasboardComponent,
-    DashbordStatistiqueComponent
+    DashbordStatistiqueComponent,
+    AddNoteComponent
   ],
   imports: [
     BrowserModule,

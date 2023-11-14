@@ -1,1 +1,116 @@
-<p>apprenant works!</p>
+
+<div class="listeapprenent mt-5 mb-5">
+  <div class="container">
+  <div class="title text-center">
+    <h3>Listes des apprenants</h3>
+  </div>
+
+  <div class="listecontainer" id="liste">
+    <div >
+      <button class="btn btn-outline-warning mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal" id="user"> Ajouter apprenant</button>
+    </div>
+
+    <div class="card-body shadow-lg">
+      <div class="table-responsive">
+          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <thead>
+                  <tr>
+                      <th appCouleurfond class="text-white fw-bold">Nom</th>
+                      <th appCouleurfond class="text-white fw-bold">Prenom</th>
+                      <th appCouleurfond class="text-white fw-bold">Email</th>
+                      <th appCouleurfond class="text-white fw-bold">Classe</th>
+                      <th appCouleurfond class="text-white fw-bold">annnee</th>
+                      <th appCouleurfond class="text-white fw-bold">activer</th>
+                      <th appCouleurfond class="text-white fw-bold">desactiver</th>
+                      <th appCouleurfond class="text-white fw-bold">detail</th>
+
+
+                  </tr>
+              </thead>
+              <tfoot>
+              </tfoot>
+              <tbody>
+                  <tr>
+                      <td>Tiger Nixon</td>
+                      <td>System Architect</td>
+                      <td>ggg@gmail.com</td>
+                      <td>L3</td>
+                      <td>2011/04/25</td>
+                      <td>
+                         <div class="d-flex justify-content-evenly">
+                        <button class="btn btn-outline-success">
+                          <i class="bi bi-person-fill-x" style="font-size: 20px;"></i>
+                        </button>
+                      </div>
+                       </td>
+                      <td>
+                         <div class="d-flex justify-content-evenly">
+                          <button class="btn btn-outline-danger ">
+                            <i class="bi bi-person-fill-up" style="font-size: 20px;"></i>
+                          </button>
+                      </div>
+                       </td>
+                      <td>
+                        <div class="d-flex justify-content-center">
+                          <button class="btn btn-primary"><i class="bi bi-person-vcard"style="font-size: 20px;"></i></button>
+                        </div>
+
+                      </td>
+                  </tr>
+
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>
+  </div>
+</div>
+
+<!-- modall -->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Apprenant</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" accordion-header></button>
+      </div>
+      <div class="modal-body">
+        <form action="" >
+          <div class="col-md-12">
+            <label for="validationCustom01" class="form-label">Nom:</label>
+            <input type="text" name="nom" class="form-control" id="validationCustom01" placeholder="Nom" required  >
+          </div>
+          <div class="col-md-12">
+            <label for="validationCustom01" class="form-label">Prenom:</label>
+            <input type="text" name="prenom" class="form-control" id="validationCustom01" placeholder="Prenom" required >
+          </div>
+          <div class="col-md-12">
+            <label for="validationCustom01" class="form-label">Email:</label>
+            <input type="email" name="email" class="form-control" id="validationCustom01" placeholder="email" required >
+          </div>
+          <div class="col-md-12">
+            <label for="adresse" class="form-label">Adresse:</label>
+            <input type="text" name="adresse"  id ="adresse" class="form-control" id="validationCustom01" placeholder="Prenom" required >
+          </div>
+          <div class="col-md-12">
+            <label for="adresse" class="form-label">Adresse:</label>
+            <select class="form-select form-select-sm mb-3" aria-label="Large select example">
+              <option selected>choisis la Classe</option>
+              <option value="1">L1</option>
+              <option value="2">L2</option>
+              <option value="3">L3</option>
+            </select>
+          </div>
+          <button class="btn btn-primary">jouter</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+

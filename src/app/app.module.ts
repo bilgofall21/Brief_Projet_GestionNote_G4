@@ -15,6 +15,7 @@ import { HeaderDasboardComponent } from './Dashbord_admin/header-dasboard/header
 import { DashbordStatistiqueComponent } from './Dashbord_admin/dashbord-statistique/dashbord-statistique.component';
 import { MenuEleveProfComponent } from './menu-eleve-prof/menu-eleve-prof.component';
 import { CouleurfondDirective } from './couleurfond.directive';
+import { MenuEleveComponent } from './menu-eleve/menu-eleve.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { CouleurfondDirective } from './couleurfond.directive';
     HeaderDasboardComponent,
     DashbordStatistiqueComponent,
     MenuEleveProfComponent,
-    CouleurfondDirective
+    CouleurfondDirective,
+    MenuEleveComponent
   ],
   imports: [
     BrowserModule,

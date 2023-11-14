@@ -45,3 +45,16 @@
   color: black;
   border-radius: 15px;
 }
+
+.Dashbord_admin ul li:hover a{
+  color: black;
+}
+
+.Dashbord_admin ul li a{
+  color: white;
+  text-decoration: none;
+}
+
+.Dashbord_admin ul li a:hover{
+  color: black;
+}

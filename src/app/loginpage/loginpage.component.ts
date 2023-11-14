@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,Input } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 @Component({
@@ -43,7 +43,7 @@ export class LoginpageComponent {
 
   public storedUsers: any;
   public usersdata: any;
-  public userid: any = 1;
+   @Input() public userid: any = 0;
   public userfoundid: any;
   public useretat: any;
 

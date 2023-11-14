@@ -8,6 +8,7 @@ import { DashbordStatistiqueComponent } from './Dashbord_admin/dashbord-statisti
 const routes: Routes = [
   { path: '', component:  LoginpageComponent},
   { path: 'administration/statistique/:id', component: DashbordStatistiqueComponent },
+  // { path: 'administration/Enseignant/:id', component: DashbordStatistiqueComponent },
   { path: 'professeur/:id', component: DashbordStatistiqueComponent }
 
 

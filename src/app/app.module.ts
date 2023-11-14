@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ApprenantComponent } from './Dashbord_admin/apprenant/apprenant.component';
@@ -11,8 +11,11 @@ import { HeaderUserComponent } from './header-user/header-user.component';
 import { LoginpageComponent } from './loginpage/loginpage.component';
 import { UserApprenantComponent } from './Utilisateur/user-apprenant/user-apprenant.component';
 import { UserProfesseurComponent } from './Utilisateur/user-professeur/user-professeur.component';
+
 import { MenuEleveProfComponent } from './menu-eleve-prof/menu-eleve-prof.component';
 import { CouleurfondDirective } from './couleurfond.directive';
+import { HeaderDasboardComponent } from './Dashbord_admin/header-dasboard/header-dasboard.component';
+import { DashbordStatistiqueComponent } from './Dashbord_admin/dashbord-statistique/dashbord-statistique.component';
 
 @NgModule({
   declarations: [
@@ -25,12 +28,16 @@ import { CouleurfondDirective } from './couleurfond.directive';
     LoginpageComponent,
     UserApprenantComponent,
     UserProfesseurComponent,
+
     MenuEleveProfComponent,
-    CouleurfondDirective
+    CouleurfondDirective,
+    HeaderDasboardComponent,
+    DashbordStatistiqueComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

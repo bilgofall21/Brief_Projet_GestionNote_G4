@@ -11,11 +11,19 @@ import { HeaderUserComponent } from './header-user/header-user.component';
 import { LoginpageComponent } from './loginpage/loginpage.component';
 import { UserApprenantComponent } from './Utilisateur/user-apprenant/user-apprenant.component';
 import { UserProfesseurComponent } from './Utilisateur/user-professeur/user-professeur.component';
+<<<<<<< HEAD
 import { HeaderDasboardComponent } from './Dashbord_admin/header-dasboard/header-dasboard.component';
 import { DashbordStatistiqueComponent } from './Dashbord_admin/dashbord-statistique/dashbord-statistique.component';
 import { MenuEleveProfComponent } from './menu-eleve-prof/menu-eleve-prof.component';
 import { CouleurfondDirective } from './couleurfond.directive';
 import { MenuEleveComponent } from './menu-eleve/menu-eleve.component';
+=======
+
+import { MenuEleveProfComponent } from './menu-eleve-prof/menu-eleve-prof.component';
+import { CouleurfondDirective } from './couleurfond.directive';
+import { HeaderDasboardComponent } from './Dashbord_admin/header-dasboard/header-dasboard.component';
+import { DashbordStatistiqueComponent } from './Dashbord_admin/dashbord-statistique/dashbord-statistique.component';
+>>>>>>> 3d4cfecf0431b5570f52049ea7a5d07d885e25cc
 
 @NgModule({
   declarations: [
@@ -28,11 +36,19 @@ import { MenuEleveComponent } from './menu-eleve/menu-eleve.component';
     LoginpageComponent,
     UserApprenantComponent,
     UserProfesseurComponent,
+<<<<<<< HEAD
     HeaderDasboardComponent,
     DashbordStatistiqueComponent,
     MenuEleveProfComponent,
     CouleurfondDirective,
     MenuEleveComponent
+=======
+
+    MenuEleveProfComponent,
+    CouleurfondDirective,
+    HeaderDasboardComponent,
+    DashbordStatistiqueComponent
+>>>>>>> 3d4cfecf0431b5570f52049ea7a5d07d885e25cc
   ],
   imports: [
     BrowserModule,

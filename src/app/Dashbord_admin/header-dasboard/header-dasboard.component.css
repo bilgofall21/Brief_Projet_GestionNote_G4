@@ -7,8 +7,8 @@
   background-color: #457A74;
   width: 300px;
   min-height: 715px;
-  position: sticky;
-  top: 0;
+  position: fixed;
+  /* top: 0; */
 }
 
 .Dashbord_admin ul{

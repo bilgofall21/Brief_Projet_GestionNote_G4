@@ -11,6 +11,8 @@ import { HeaderUserComponent } from './header-user/header-user.component';
 import { LoginpageComponent } from './loginpage/loginpage.component';
 import { UserApprenantComponent } from './Utilisateur/user-apprenant/user-apprenant.component';
 import { UserProfesseurComponent } from './Utilisateur/user-professeur/user-professeur.component';
+import { MenuEleveProfComponent } from './menu-eleve-prof/menu-eleve-prof.component';
+import { CouleurfondDirective } from './couleurfond.directive';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { UserProfesseurComponent } from './Utilisateur/user-professeur/user-prof
     HeaderUserComponent,
     LoginpageComponent,
     UserApprenantComponent,
-    UserProfesseurComponent
+    UserProfesseurComponent,
+    MenuEleveProfComponent,
+    CouleurfondDirective
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component,Input } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { UserserviceService } from '../serviceuser/userservice.service';
 @Component({
   selector: 'app-loginpage',
   templateUrl: './loginpage.component.html',
@@ -23,6 +24,20 @@ export class LoginpageComponent {
       role:'0',
       etat:'0'
     },
+    {
+      id: '3',
+      email: 'germaine@gmail.com',
+      password: 'gg',
+      role:'1',
+      etat:'1'
+    },
+    {
+      id: '4',
+      email: 'libass@gmail.com',
+      password: 'libass',
+      role:'0',
+      etat:'1'
+    },
   ]
 
 
@@ -38,12 +53,12 @@ export class LoginpageComponent {
   }
 
 
-  constructor(private router: Router) {
+  constructor(private router: Router,private userService: UserserviceService) {
   }
 
   public storedUsers: any;
   public usersdata: any;
-  public userid: any = 1;
+   @Input() public userid: any = 0;
   public userfoundid: any;
   public useretat: any;
 
@@ -82,7 +97,8 @@ export class LoginpageComponent {
       if (userFound) {
         this.affichermessage('success','Bienvenu',userFound.email)
         if (userFound.role == 1 && userFound.etat==1) {
-          this.router.navigate(['/administration/statistique',this.userfoundid]); //on le redirige vers la page accueil
+          this.router.navigate(['/administration/statistique', this.userfoundid]);
+          this.userService.setUserId(userFound.id);//on le redirige vers la page accueil
         }else if(userFound.role == 0 && userFound.etat==1){
           this.router.navigate(['/professeur/',this.userfoundid]); //on le redirige vers la page accueil
         } else {

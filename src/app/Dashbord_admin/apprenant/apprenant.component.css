@@ -2,6 +2,49 @@
 
 
 #liste{
-  
+
   margin-left: 200px;
 }
+
+
+
+.card {
+  width: 500px;
+  background-color: #efefef;
+  border: none;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.image img {
+  /* transition: all 0.5s */
+}
+
+/* .card:hover .image img {
+  transform: scale(1.5)
+} */
+
+
+
+.name {
+  font-size: 22px;
+  font-weight: bold
+}
+
+.idd {
+  font-size: 14px;
+  font-weight: 600
+}
+
+.idd1 {
+  font-size: 12px
+}
+
+
+
+
+
+
+
+
+

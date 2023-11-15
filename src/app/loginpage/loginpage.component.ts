@@ -15,33 +15,55 @@ export class LoginpageComponent {
       email: 'habib@gmail.com',
       password: 'habib',
       role:'1',
-      etat:'1'
-    },
-    {
-      id: '2',
-      email: 'hasso@gmail.com',
-      password: 'hasso',
-      role:'0',
-      etat:'0'
-    },
-    {
-      id: '3',
-      email: 'germaine@gmail.com',
-      password: 'gg',
-      role:'1',
-      etat:'1'
-    },
-    {
-      id: '4',
-      email: 'libass@gmail.com',
-      password: 'libass',
-      role:'0',
-      etat:'1'
+      etat: '1',
+      Matiere: [
+        {
+          id: '',
+          matiere: '',
+        }
+      ]
     },
   ]
-  
 
+  public Matiere: any[] = [
+    {
+      id: '',
+      matiere :""
+    }
+  ]
 
+  public Classe: any[] = [
+    {
+      id: "",
+      niveau: "",
+      effectif:''
+    }
+  ]
+
+  public Evaluation: any[] = [
+    {
+      id: '',
+      semestre: '',
+      date: '',
+      type: '',
+      etat: '',
+      matiere: '',
+      professeur: '',
+      niveau: ''
+    }
+  ]
+
+  public notes: any[] = [
+    {
+      id: '',
+      apprenant: '',
+      evaluation: '',
+      professeur: '',
+      matiere: '',
+      semestre: '',
+      Note: ''
+    }
+  ]
 
   formData = {
     email: '',
@@ -53,13 +75,25 @@ export class LoginpageComponent {
     passregister:''
   }
 
-
   constructor(private router: Router,private userService: UserserviceService) {
   }
 
   public storedUsers: any;
   public usersdata: any;
-   @Input() public userid: any = 0;
+
+  public storeMatiere: any;
+  public usersMat: any;
+
+  public storeclasse: any;
+  public userClasse: any;
+
+  public storeEvaluation: any;
+  public userEvaluation: any;
+
+  public storeNotes: any;
+  public usersNotes: any
+
+  public userid: any = 0;
   public userfoundid: any;
   public useretat: any;
 
@@ -70,6 +104,38 @@ export class LoginpageComponent {
        } else {
          // Si aucune donnée n'est présente dans le local storage, initialisez-le avec vos données par défaut
          localStorage.setItem('Schooluser', JSON.stringify(this.Schooluser));
+     }
+
+     this.storeMatiere = localStorage.getItem('Matiere');
+       if (this.storedUsers) {
+         this.usersMat = JSON.parse(this.usersMat);
+       } else {
+         // Si aucune donnée n'est présente dans le local storage, initialisez-le avec vos données par défaut
+         localStorage.setItem('Matiere', JSON.stringify(this.Matiere));
+     }
+
+     this.storeclasse = localStorage.getItem('Classe');
+       if (this.storeclasse) {
+         this.userClasse = JSON.parse(this.userClasse);
+       } else {
+         // Si aucune donnée n'est présente dans le local storage, initialisez-le avec vos données par défaut
+         localStorage.setItem('Classe', JSON.stringify(this.Classe));
+     }
+
+     this.storeEvaluation = localStorage.getItem('Evaluation');
+       if (this.storeEvaluation) {
+         this.userEvaluation = JSON.parse(this.userEvaluation);
+       } else {
+         // Si aucune donnée n'est présente dans le local storage, initialisez-le avec vos données par défaut
+         localStorage.setItem('Evaluation', JSON.stringify(this.Evaluation));
+     }
+
+     this.storeNotes = localStorage.getItem('notes');
+       if (this.storeEvaluation) {
+         this.usersNotes = JSON.parse(this.usersNotes);
+       } else {
+         // Si aucune donnée n'est présente dans le local storage, initialisez-le avec vos données par défaut
+         localStorage.setItem('notes', JSON.stringify(this.notes));
      }
 
   }

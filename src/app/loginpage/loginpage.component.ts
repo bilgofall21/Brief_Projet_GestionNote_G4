@@ -12,8 +12,12 @@ export class LoginpageComponent {
   public Schooluser: any[] = [
     {
       id: '1',
+      nom: 'bah',
+      prenom:'habib',
       email: 'habib@gmail.com',
       password: 'habib',
+      niveau: '',
+      annee: '',
       role:'1',
       etat: '1',
       Matiere: [

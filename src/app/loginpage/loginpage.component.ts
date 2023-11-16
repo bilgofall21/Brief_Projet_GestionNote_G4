@@ -74,10 +74,6 @@ export class LoginpageComponent {
     pass: ''
   };
 
-  formDataregister = {
-    emailregister: '',
-    passregister:''
-  }
 
   constructor(private router: Router,private userService: UserserviceService) {
   }
@@ -102,7 +98,7 @@ export class LoginpageComponent {
   public useretat: any;
 
    ngOnInit(): void {
-      this.storedUsers = localStorage.getItem('Schooluser');
+     this.storedUsers = localStorage.getItem('Schooluser');
        if (this.storedUsers) {
          this.usersdata = JSON.parse(this.storedUsers);
        } else {
@@ -144,24 +140,19 @@ export class LoginpageComponent {
 
   }
 
-  affichermessage(icone: any, message: string,user:string) {
-    Swal.fire({
-        position: 'center',
-        icon: icone,
-        title: message +"" +user,
-        showConfirmButton: false,
-        timer: 1500
-    })
-  }
+
   submitFunction(event: Event):void {
     event.preventDefault();
-    if(this.formData.email !== '' || this.formData.pass !== '') {
+    if(this.formData.email !== '' && this.formData.pass !== '') {
       let email = this.formData.email
       let pass = this.formData.pass;
 
       let datastring = localStorage.getItem('Schooluser');
       let existingData = datastring ? JSON.parse(datastring) : [];
-      let userFound = this.Schooluser.find(Schooluser => Schooluser.email === this.formData.email && Schooluser.password === this.formData.pass);
+      // @ts-ignore
+      let userFound = this.usersdata.find(usersdata => usersdata.email === this.formData.email && usersdata.password === this.formData.pass);
+
+      // console.log(userFound)
       this.userfoundid = userFound.id
       let useretat = this.userfoundid.role;
 
@@ -170,8 +161,8 @@ export class LoginpageComponent {
         if (userFound.role == 1 && userFound.etat==1) {
           this.router.navigate(['/administration/statistique', this.userfoundid]);
           this.userService.setUserId(userFound.id);//on le redirige vers la page accueil
-        }else if(userFound.role == 0 && userFound.etat==1){
-          this.router.navigate(['/professeur/',this.userfoundid]); //on le redirige vers la page accueil
+        }else if(userFound.role == 2 && userFound.etat==1){
+          this.router.navigate(['/EspaceProf/',this.userfoundid]); //on le redirige vers la page accueil
         } else {
           this.affichermessage('error','Oops','Ce Compte a été desactivé contacter votre administrateur')
         }
@@ -181,5 +172,15 @@ export class LoginpageComponent {
     }else{
       this.affichermessage('error','Oops','Les Informations que vous avez saisies sont incorrectes!')
     }
+  }
+
+  affichermessage(icone: any, message: string,user:string) {
+    Swal.fire({
+        position: 'center',
+        icon: icone,
+        title: message +"" +user,
+        showConfirmButton: false,
+        timer: 1500
+    })
   }
 }

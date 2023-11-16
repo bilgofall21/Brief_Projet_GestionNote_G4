@@ -12,10 +12,12 @@ import { LoginpageComponent } from './loginpage/loginpage.component';
 import { UserApprenantComponent } from './Utilisateur/user-apprenant/user-apprenant.component';
 import { UserProfesseurComponent } from './Utilisateur/user-professeur/user-professeur.component';
 
-import { MenuEleveProfComponent } from './menu-eleve-prof/menu-eleve-prof.component';
-import { CouleurfondDirective } from './couleurfond.directive';
 import { HeaderDasboardComponent } from './Dashbord_admin/header-dasboard/header-dasboard.component';
 import { DashbordStatistiqueComponent } from './Dashbord_admin/dashbord-statistique/dashbord-statistique.component';
+import { MenuEleveProfComponent } from './menu-eleve-prof/menu-eleve-prof.component';
+import { CouleurfondDirective } from './couleurfond.directive';
+import { MenuEleveComponent } from './menu-eleve/menu-eleve.component';
+
 
 @NgModule({
   declarations: [
@@ -29,15 +31,19 @@ import { DashbordStatistiqueComponent } from './Dashbord_admin/dashbord-statisti
     UserApprenantComponent,
     UserProfesseurComponent,
 
+    HeaderDasboardComponent,
+    DashbordStatistiqueComponent,
     MenuEleveProfComponent,
     CouleurfondDirective,
-    HeaderDasboardComponent,
-    DashbordStatistiqueComponent
+    MenuEleveComponent
+
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

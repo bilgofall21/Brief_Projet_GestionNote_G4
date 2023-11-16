@@ -8,71 +8,71 @@ import Swal from 'sweetalert2';
 })
 export class DashbordMatiereComponent implements OnInit {
 
-  public Matiere: any[] = [
-    {
-      id: '',
-      matiere :""
-    }
-  ]
-
-  public storeMatiere: any;
-  public usersMat: any;
-
+   public userMatiere: any;
+   public storeMatiere :any;
+   // la variable qui permet de boucler notre tableau 
   
-  public storedUsers: any;
-  public usersdata: any;
-
-
-  matieres: string="";
+ // le dernier classe qui est ajouter 
+   // idDernierClasse: number = 0;
  
-   ngOnInit(): void {
-    
-
-     this.storeMatiere = localStorage.getItem('Matiere');
-       if (this.storedUsers) {
-         this.usersMat = JSON.parse(this.usersMat);
-       } else {
-         // Si aucune donnée n'est présente dans le local storage, initialisez-le avec vos données par défaut
-         localStorage.setItem('Matiere', JSON.stringify(this.Matiere));
+ 
+   idMatiere:number= 0;
+   matiere: string="";
+ 
+  
+   public listeMatiere: any[] = [
+     {
+       id: "",
+       matiere: "",
+       effectif:''
      }
-
-     
-  }
-  ajouterMatiere(){
-    let classe = {
-     id: this.Matiere.length ++,
-     niveau:this.Matiere,
-     
-   }
+   ]
  
-
-     // On ajoute l'objet dans la liste des classes
+ 
+ 
+ ngOnInit(): void {
+ 
+   
+   this.storeclasse = localStorage.getItem('listeMatiere');
+   if (this.storeMatiere) {
+     this.userMatiere = JSON.parse(localStorage.getItem("classe") || "[]");
+     console.log(this.userMatiere)
+   } else {
+     // Si aucune donnée n'est présente dans le local storage, initialisez-le avec vos données par défaut
+     localStorage.setItem('listeMatiere', JSON.stringify(this.listeMatiere));
+ }
+ 
+ }
+ 
+ 
+ public storeclasse: any;
+   ajouterClasse(){
+      let listeMatiere = {
+       id: this.listeMatiere.length ++,
+       matiere:this.listeMatiere,
+      
+     }
+   
   
-     this.usersMat.push(this.Matiere);
-     console.log(this.Matiere);
-
-    //  console.log(this.niveauClasse);
-    //  console.log(this.userClasse);
-    //  console.log(this.classe);
-
-
-
-
-     // localStorage.setItem('classe', JSON.stringify(this.classe));
-     localStorage.setItem('Matiere', JSON.stringify(this.usersMat));
-
-      // Ferme le popup si on click sur Ok 
-      Swal.fire({
-       title: "Felicitation!",
-       text: "Classe Ajouter avec Succés ",
-       icon: "success",
-     });
-   }
+       // On ajoute l'objet dans la liste des classes
     
-
-     
-   }
-
-
-
-
+       this.userMatiere.push(listeMatiere);
+ 
+      //  console.log(this.niveauClasse);
+      //  console.log(this.userClasse);
+      //  console.log(this.classe);
+ 
+ 
+ 
+ 
+       // localStorage.setItem('classe', JSON.stringify(this.classe));
+       localStorage.setItem('listeMatiere', JSON.stringify(this.userMatiere));
+ 
+        // Ferme le popup si on click sur Ok 
+        Swal.fire({
+         title: "Felicitation!",
+         text: "Classe Ajouter avec Succés ",
+         icon: "success",
+       });
+     }
+}

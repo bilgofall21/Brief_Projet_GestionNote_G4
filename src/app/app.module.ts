@@ -42,7 +42,8 @@ import { MenuEleveComponent } from './menu-eleve/menu-eleve.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

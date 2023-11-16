@@ -13,15 +13,7 @@ import { FormsModule } from '@angular/forms';
 export class DashbordProfesseurComponent {
   public storedUsers: any;
   public usersdata: any;
-  ngOnInit(): void {
-    this.storedUsers = localStorage.getItem('Schooluser');
-    if (this.storedUsers) {
-      this.usersdata = JSON.parse(this.storedUsers);
-    } else {
-      // Si aucune donnée n'est présente dans le local storage, initialisez-le avec vos données par défaut
-      localStorage.setItem('Schooluser', JSON.stringify('Schooluser'));
-    }
-  }
+
 
   constructor(private router: Router, private userService: UserserviceService) {
   }
@@ -73,5 +65,19 @@ export class DashbordProfesseurComponent {
 
 
     }
+  }
+
+   ngOnInit(): void {
+    this.storedUsers = localStorage.getItem('Schooluser');
+    if (this.storedUsers) {
+      this.usersdata = JSON.parse(this.storedUsers);
+    } else {
+      // Si aucune donnée n'est présente dans le local storage, initialisez-le avec vos données par défaut
+      localStorage.setItem('Schooluser', JSON.stringify('Schooluser'));
+    }
+  }
+
+  archiver(id: any) {
+    alert(id);
   }
 }

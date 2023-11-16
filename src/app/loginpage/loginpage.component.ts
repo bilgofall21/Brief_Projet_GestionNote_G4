@@ -163,6 +163,8 @@ export class LoginpageComponent {
           this.userService.setUserId(userFound.id);//on le redirige vers la page accueil
         }else if(userFound.role == 2 && userFound.etat==1){
           this.router.navigate(['/EspaceProf/',this.userfoundid]); //on le redirige vers la page accueil
+        } else if (userFound.role == 3 && userFound == 1) {
+          this.router.navigate(['EspaceApprenant/', this.userfoundid])
         } else {
           this.affichermessage('error','Oops','Ce Compte a été desactivé contacter votre administrateur')
         }

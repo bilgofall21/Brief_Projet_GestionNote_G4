@@ -28,7 +28,6 @@ import { DashbordStatistiqueComponent } from './Dashbord_admin/dashbord-statisti
     LoginpageComponent,
     UserApprenantComponent,
     UserProfesseurComponent,
-
     MenuEleveProfComponent,
     CouleurfondDirective,
     HeaderDasboardComponent,
@@ -37,7 +36,8 @@ import { DashbordStatistiqueComponent } from './Dashbord_admin/dashbord-statisti
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+   
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -134,6 +134,7 @@ SoumettreFormlaire (){
   this.formuStudent = {};
   // methode sauvegarde dans localstorage
   this.saveDataLocal();
+  // vider le formulaire apre ajou
 }
 // fonction pour stocker donne ajouter sur local storage au submit
 saveDataLocal (){

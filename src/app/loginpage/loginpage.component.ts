@@ -167,13 +167,13 @@ export class LoginpageComponent {
         }else if(userFound.role == 3 && userFound.etat == 1) {
           this.router.navigate(['/EspaceApprenant/',this.userfoundid]);
         }else{
-          this.affichermessage('error','Oops','Ce Compte a été desactivé contacter votre administrateur')
+          this.affichermessage('error','Oops',' Ce Compte a été desactivé!')
         }
       }else{
-        this.affichermessage('error','Oops','login ou Mot de passe Incorrecte')
+        this.affichermessage('error','Oops',' login ou Mot de passe Incorrecte')
       }
     }else{
-      this.affichermessage('error','Oops','Les Informations que vous avez saisies sont incorrectes!')
+      this.affichermessage('error','Oops',' Les Informations que vous avez saisies sont incorrectes!')
     }
   }
 
@@ -182,8 +182,8 @@ export class LoginpageComponent {
         position: 'center',
         icon: icone,
         title: message +"" +user,
-        showConfirmButton: false,
-        timer: 1500
+        showConfirmButton: true,
+        // timer: 1500
     })
   }
 }

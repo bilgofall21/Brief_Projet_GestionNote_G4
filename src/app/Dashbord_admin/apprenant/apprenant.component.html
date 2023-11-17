@@ -1,4 +1,5 @@
-<app-dashbord-statistique></app-dashbord-statistique>
+<!-- <app-dashbord-statistique></app-dashbord-statistique> -->
+<app-header-dasboard></app-header-dasboard>
 <div class="listeapprenent mt-5 mb-5">
   <div class="container">
   <div class="title text-center">
@@ -30,12 +31,12 @@
               <tfoot>
               </tfoot>
               <tbody>
-                  <tr *ngFor="let studie of usersdata " >
-                      <td> {{studie.prenom}} </td>
-                      <td>{{studie.nom}} </td>
-                      <td>{{studie.email}} </td>
-                      <td>{{studie.niveau}}</td>
-                      <td>{{studie.annee}} </td>
+                  <tr *ngFor="let element of usersdata " >
+                      <td > {{element.prenom}} </td>
+                      <td>{{element.nom}} </td>
+                      <td>{{element.email}} </td>
+                      <td>{{element.niveau}}</td>
+                      <td>{{element.annee}} </td>
                       <td>
                          <div class="d-flex justify-content-evenly">
                         <button class="btn btn-outline-success">
@@ -52,7 +53,7 @@
                        </td>
                       <td>
                         <div class="d-flex justify-content-center">
-                          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal-detail"   ><i class="bi bi-person-vcard"style="font-size: 20px;"  ></i></button>
+                          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal-detail" (click)="selectElement (element)"  ><i class="bi bi-person-vcard"style="font-size: 20px;"  ></i></button>
                         </div>
 
                       </td>
@@ -106,7 +107,7 @@
               <option value="L3">L3</option>
             </select>
           </div>
-          <button class="btn btn-primary" type="submit" (click)="SoumettreFormlaire ()" >jouter</button>
+          <button class="btn btn-primary" type="submit" (click)="SoumettreFormlaire ()" >Ajouter</button>
         </form>
       </div>
       <div class="modal-footer">
@@ -118,43 +119,89 @@
 </div>
 
 <!-- fin modal ajout -->
+
 <!-- modal detaiil -->
 <div class="modal fade" id="exampleModal-detail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" >
     <div class="modal-content" >
 
-      <div class="modal-body">
-        <div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
-          <div class="card p-4 shadow-md">
-           <div class=" image d-flex flex-column justify-content-center align-items-center"   >
+      <div class="modal-body" appCouleurfond>
+        <div class="card-container" appColorhover id="detail" *ngIf="emelementSelectioner">
 
-                <img src="https://i.imgur.com/wvxPV9S.png" height="100" width="100" />
-             <div class="nameuser  w-50 d-flex justify-content-evenly">
-               <span class="name mt-3"> </span>
-               <span class="name mt-3"></span>
-             </div>
-             <div class="emaildetail">
-               <span class="name mt-3">   </span>
-             </div>
-             <div class="emaildetail">
-               <span class="name mt-3">   </span>
-             </div>
-             <div class="emaildetail">
-               <span class="name mt-3">   </span>
-             </div>
-             <div class="gap-3 mt-3 icons d-flex flex-row justify-content-center align-items-center">
+          <img class="round" src="https://randomuser.me/api/portraits/women/79.jpg" alt="user" />
+          <h3 class="text-black fw-bold"> {{emelementSelectioner.prenom}}  {{emelementSelectioner.nom}} </h3>
+          <h6  class="text-black fw-bold"> {{emelementSelectioner.niveau}}</h6>
+          <p class="text-black fw-bold"> {{emelementSelectioner.email}}</p>
+          <p class="text-black fw-bold"> {{emelementSelectioner.annee}}</p>
+          <div class=" d-flex justify-content-around pt-4">
+          <button class="btn btn-primary" id="boutons"  data-bs-toggle="modal" data-bs-target="#exampleModal-modif" >Modifier</button>
 
-              </div>
-            </div>
+              <button type="button" class="btn btn-secondary mb-4" data-bs-dismiss="modal">Close</button>
+
+
+
           </div>
+
         </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- fin modal detail -->
+
+<!-- modal Modifier -->
+
+<div class="modal fade" id="exampleModal-modif" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Apprenant</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" accordion-header></button>
+      </div>
+      <div class="modal-body">
+        <form action="" >
+          <div class="col-md-12">
+            <label for="prenom" class="form-label">Prenom:</label>
+            <input type="text" name="prenom" class="form-control" id="validationCustom01" placeholder="Prenom" required [(ngModel)]="formuStudent.prenom"  >
+          </div>
+          <div class="col-md-12">
+            <label for="nom" class="form-label">Nom:</label>
+            <input type="text" name="nom" class="form-control" id="validationCustom01" placeholder="Nom" required [(ngModel)]="formuStudent.nom" >
+          </div>
+          <div class="col-md-12">
+            <label for="email" class="form-label">Email:</label>
+            <input type="email" name="email" class="form-control" id="validationCustom01" placeholder="email" required [(ngModel)]="formuStudent.email" >
+          </div>
+          <div class="col-md-12">
+            <label for="password" class="form-label">Password:</label>
+            <input type="text" name="password" class="form-control" id="password" placeholder="Password" required [(ngModel)]="formuStudent.password" >
+          </div>
+          <div class="col-md-12">
+            <label for="adresse" class="form-label">Annee:</label>
+            <input type="date" name="annee" id="annee" placeholder="annee" [(ngModel)]="formuStudent.annee" >
+          </div>
+          <div class="col-md-12">
+            <label for="adresse" class="form-label">Niveau:</label>
+            <select class="form-select form-select-sm mb-3" name="niveau" aria-label="Large select example" [(ngModel)]="formuStudent.niveau" >
+              <option selected>choisis le niveau</option>
+              <option value="L1">L1</option>
+              <option value="L2">L2</option>
+              <option value="L3">L3</option>
+            </select>
+          </div>
+          <button class="btn btn-primary" type="submit"  >modifier</button>
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-
+        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
 </div>
+
+<!-- Fin modal Modifier -->
 
 

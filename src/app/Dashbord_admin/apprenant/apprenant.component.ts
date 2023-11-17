@@ -64,6 +64,8 @@ role:'3',
 etat: '1',
 };
 
+emelementSelectioner : any ;
+
 
 
 // constructeur
@@ -118,6 +120,7 @@ ngOnInit(): void {
 
 }
 
+
 SoumettreFormlaire (){
   // assiger sur le Local des id pour chak apprenant
   this.formuStudent.id = this.usersdata.length + 1;
@@ -127,24 +130,18 @@ SoumettreFormlaire (){
       // avec le destructuring {...} pour recuperer pour crer une copie de l'objet
   this.usersdata.push({...this.formuStudent});
   console.log(this.Schooluser);
+   // vider le formulaire apre ajout
   this.formuStudent = {};
   // methode sauvegarde dans localstorage
   this.saveDataLocal();
-  // vider le formulaire apre ajout
-
-
-
-
 }
-
-
-
+// fonction pour stocker donne ajouter sur local storage au submit
 saveDataLocal (){
   localStorage.setItem('Schooluser', JSON.stringify(this.usersdata));
 }
-// showDetail (id:number){
-// this.detailStudent= this.Schooluser.find(formuStudent => formuStudent.id === id)
-// }
+selectElement (element : any){
+this.emelementSelectioner = element;
+}
 
 
 

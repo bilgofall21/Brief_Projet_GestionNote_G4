@@ -54,10 +54,6 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body bg-body-secondary">
-                    <div class="mb-3">
-                        <label for="idEvaluation" class="form-label">ID</label>
-                        <input type="number" class="form-control" id="idEvaluation" name="idEvaluation" [(ngModel)]="addProf.idEvaluation" >
-                      </div>
                       <div class="mb-3">
                         <label for="semestre" class="form-label">semestre de l'évaluation</label>
                         <select class="form-select" id="semestre" name="semestre" [(ngModel)]="addProf.semestre"    required>
@@ -104,9 +100,9 @@
                         </select>
                       </div>
                     <div class="mb-3">
-                        <label for="niveau" class="form-label">Niveau</label>
+                        <label for="niveau" class="form-label">Classe</label>
                         <select class="form-select" id="niveau"  [(ngModel)]="addProf.niveau"required >
-                          <option selected disabled value="">Choisissez la niveau</option>
+                          <option selected disabled value="">Choisissez la Classe</option>
                           <option>Licence 1</option>
                           <option>Licence 2</option>
                           <option>Licence 3</option>
@@ -135,8 +131,8 @@
     <!-- Modal -->
             <form class="col-8 navbar-search">
                 <div class="input-group">
-                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                        aria-label="Search" aria-describedby="basic-addon2">
+                    <input type="text" class="form-control bg-light border-0 small" placeholder="rechercher une evaluation" 
+                        aria-label="Search" aria-describedby="basic-addon2" [(ngModel)] = "filterValue" (input)="onSearch()">
                     <div class="input-group-append">
                         <button class="btn " type="button" appCouleurfond>
                             <i class="bi bi-search" style="color :white;  "></i>
@@ -149,43 +145,72 @@
 
   <!-- fin recherchebar -->
 
+  
+  
+      <div class="container shadow mt-5  " >
+         <!-- carte bouclé -->
+         <div class=" row  gap-3 rowEval px-3 py-3">
+              <div class="card col-4  "  *ngFor="let evalue of Evaluation" >
+                <img src="https://imgs.search.brave.com/Vynh36NilhgQwpozWG56qEecEZo1D3CHp4_It31VeDw/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9taXJv/Lm1lZGl1bS5jb20v/djIvMSphQ3NubTl2/aWlMNUZvMEpDLUlf/ZXhRLnBuZw" class="card-img-top" alt="...">
+                <div class="card-body bg-body-tertiary " >
+                  <h3 class="card-title text-center " style="border: 4px solid #457a7469;">Evaluation à venir</h3>
+                    
+                    <ul style="list-style: none; font-size: 18px; font-weight: 700;">
+                      <li class="card-title"> Semestre:{{evalue.semestre}}</li>
+                      <li class="card-title"> Type:{{evalue.type}}</li>
+                      <li class="card-title">Matiere:{{evalue.matiere}}</li>
+                      <li class="card-title">Date :{{evalue.date}}</li>
+                      <li class="card-title">l'état :{{evalue.etat}}</li>
+                      <li class="card-title"> Classe :{{evalue.classe}}</li>
+                      <li class="card-title"> Professeur:{{evalue.professeur}}</li>
+                    </ul>
+                  
+                        <!-- Button trigger modal -->
+                   <div class="mb-3 d-flex gap-5 ">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                          Liste Classe
+                        </button>
+                        <button type="button" class="btn btn-danger btn-sm" >
+                          Attribuer  note
+                        </button>
+                   </div>
+                </div>
+            </div>
+            </div>
+          </div>
 
-  <!-- tableau affiche -->
-  <div class=" container card-body shadow-lg mt-5 ">
-    <div  class=" table-responsive  ">
-      <table class="table mb-3 table-hover table-striped">
-        <thead>
-          <tr>
-            <th appCouleurfond>ID</th>
-            <th appCouleurfond>Semestre</th>
-            <th appCouleurfond>Type</th>
-            <th appCouleurfond>Matieres</th>
-            <th appCouleurfond>Date</th>
-            <th appCouleurfond>Etat</th>
-            <th appCouleurfond>Niveau</th>
-            <th appCouleurfond>professeur</th>
 
-          </tr>
+  
 
-        </thead>
-        <tbody>
-          <tr *ngFor="let evaluation of Evaluation">
-            <td> {{evaluation.idEvaluation}} </td>
-            <td>{{evaluation.semestre}} </td>
-            <td>{{evaluation.type}} </td>
-            <td>{{evaluation.matiere}} </td>
-            <td>{{evaluation.date}} </td>
-            <td>{{evaluation.etat}} </td>
-            <td>{{evaluation.niveau}} </td>
-            <td>{{evaluation.professeur}} </td>
 
-          </tr>
+   
 
-        </tbody>
-      </table>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content ">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Liste de la classe</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+              <div class="modal-body">
+                <ul>
+                      <li>Amadou Diop</li>
+                      <li>Fatou  Sall</li>
+                      <li>Gorgui  Fall</li>
+                      <li>Lobe Dia</li>
+                      <li>Amadou Diop</li>
+                      <li>Amadou Diop</li>
+                      <li>Amadou Diop</li>
+                      <li>Amadou Diop</li>
+                      <li>Amadou Diop</li>
+                  
+                </ul>
+              </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">fermer</button>
+            <!-- <button type="button" class="btn btn-primary">Enregistrer</button> -->
+          </div>
+        </div>
       </div>
-
-
-
-  </div>
-
+    </div>

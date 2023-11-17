@@ -62,10 +62,25 @@
                         <label for="idEvaluation" class="form-label">ID</label>
                         <input type="number" class="form-control" id="idEvaluation" name="idEvaluation" [(ngModel)]="addProf.idEvaluation" >
                       </div>
-                    <div class="mb-3">
-                        <label for="semestre" class="form-label">Semestre</label>
-                        <input type="text" class="form-control" id="semestre" name="semestre" [(ngModel)]="addProf.semestre"   >
-                     </div>
+                      <div class="mb-3">
+                        <label for="semestre" class="form-label">semestre de l'évaluation</label>
+                        <select class="form-select" id="semestre" name="semestre" [(ngModel)]="addProf.semestre"    required>
+                            <option selected disabled value="">Choisis le semestre  d'évaluation</option>
+                            <option>Semestre1</option>
+                            <option>Semestre 2</option>
+                            <option>Semestre 3</option>
+                            <option>Semestre 4</option>
+                          </select>
+                    </div>
+                     <div class="mb-3">
+                      <label for="type" class="form-label">Type de l'évaluation</label>
+                      <select class="form-select" id="type" name="type" [(ngModel)]="addProf.type"    required>
+                          <option selected disabled value="">Choisis le type  d'évaluation</option>
+                          <option>Devoir</option>
+                          <option>Examen</option>
+                          <option>Autres</option>
+                        </select>
+                  </div>
                      <div class="mb-3">
                         <label for="matiere" class="form-label">Matiere</label>
                         <select class="form-select" id="matiere" [(ngModel)]="addProf.matiere"   required>
@@ -77,23 +92,25 @@
                           <option>Chimiee</option>
                         </select>
                       </div>
-                    <div class="mb-3">
-                        <label for="type" class="form-label">Type de l'évaluation</label>
-                        <select class="form-select" id="type" name="type" [(ngModel)]="addProf.type"    required>
-                            <option selected disabled value="">Choisis le type  d'évaluation</option>
-                            <option>Devoir</option>
-                            <option>Examen</option>
-                            <option>Autres</option>
-                          </select>
-                    </div>
+                   
                     <div class="mb-3">
                         <label for="date" class="form-label">Mettez la date de l'évaluation</label>
                         <input type="date" class="form-control" id="date" name="date" [(ngModel)]="addProf.date" >
                      </div>
                     <div class="mb-3">
-                        <label for="classe" class="form-label">Niveau</label>
-                        <select class="form-select" id="classe" required >
-                          <option selected disabled value="">Choisissez la classe</option>
+                        <label for="etat" class="form-label">etat</label>
+                        <select class="form-select" id="etat"  [(ngModel)]="addProf.etat"required >
+                          <option selected disabled value="">Choisissez la etat</option>
+                          <option>A Faire</option>
+                          <option>Encours</option>
+                          <option>Terminer</option>
+                        
+                        </select>
+                      </div>
+                    <div class="mb-3">
+                        <label for="niveau" class="form-label">Niveau</label>
+                        <select class="form-select" id="niveau"  [(ngModel)]="addProf.niveau"required >
+                          <option selected disabled value="">Choisissez la niveau</option>
                           <option>Licence 1</option>
                           <option>Licence 2</option>
                           <option>Licence 3</option>
@@ -101,6 +118,10 @@
                           <option>Master 2</option>
                         </select>
                       </div>
+                      <div class="mb-3">
+                        <label for="professeur" class="form-label">Mettez la professeur de l'évaluation</label>
+                        <input type="professeur" class="form-control" id="professeur" name="professeur" [(ngModel)]="addProf.professeur" >
+                     </div>
                 </div>
                 <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
@@ -142,10 +163,11 @@
             <th appCouleurfond>ID</th>
             <th appCouleurfond>Semestre</th>
             <th appCouleurfond>Type</th>
-            <th appCouleurfond>Année</th>
-            <th appCouleurfond>Etat</th>
             <th appCouleurfond>Matieres</th>
+            <th appCouleurfond>Date</th>
+            <th appCouleurfond>Etat</th>
             <th appCouleurfond>Niveau</th>
+            <th appCouleurfond>professeur</th>
            
           </tr>
   
@@ -155,9 +177,11 @@
             <td> {{evaluation.idEvaluation}} </td>
             <td>{{evaluation.semestre}} </td>
             <td>{{evaluation.type}} </td>
+            <td>{{evaluation.matiere}} </td>
             <td>{{evaluation.date}} </td>
-            <td>{{evaluation.classe}} </td>
-            <td>{{evaluation.classe}} </td>
+            <td>{{evaluation.etat}} </td>
+            <td>{{evaluation.niveau}} </td>
+            <td>{{evaluation.professeur}} </td>
            
           </tr>
          

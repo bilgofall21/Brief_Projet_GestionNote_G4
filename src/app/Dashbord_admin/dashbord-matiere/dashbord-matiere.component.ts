@@ -35,6 +35,12 @@ export class DashbordMatiereComponent implements OnInit {
  
  
   }
+
+
+  viderChapmsMatiere(){
+    this.matiere = ""
+   
+  }
   public usersMat: any;
   ajouterMatiere(){
     let  matieres  = {
@@ -50,6 +56,9 @@ export class DashbordMatiereComponent implements OnInit {
        console.log(this.matiere);
        console.log(this.id);
        console.log(this.usersMat);
+
+        // On vide les champs 
+      this.viderChapmsMatiere();
  
        // localStorage.setItem('classe', JSON.stringify(this.classe));
        localStorage.setItem('Matiere', JSON.stringify(this.usersMat));

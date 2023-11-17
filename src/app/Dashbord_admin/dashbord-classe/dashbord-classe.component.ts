@@ -45,6 +45,12 @@ ngOnInit(): void {
 
 
 public storeclasse: any;
+
+viderChapmsClasse(){
+  this.niveauClasse = "",
+  this.effectifClasse =""
+ 
+}
   ajouterClasse(){
      let classe = {
       id: this.classe.length ++,
@@ -52,7 +58,9 @@ public storeclasse: any;
       effectif:this.effectifClasse,
     }
   
- 
+//  on vide les champs 
+   this.viderChapmsClasse();
+
       // On ajoute l'objet dans la liste des classes
    
       this.userClasse.push(classe);

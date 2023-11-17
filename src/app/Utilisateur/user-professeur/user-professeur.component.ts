@@ -43,8 +43,14 @@ export class UserProfesseurComponent implements OnInit {
   public userfoundid: any;
   public useretat: any;
 
+  //valeur du filter qui correspond a celui du champs recherche
+  filterValue = '';
+  //les element trouver
+  filteredElement:any;
+
 
 addProf: any={};
+dataEvaluation : any;
   
   ngOnInit(): void {
     console.log(this.storedUsers);
@@ -72,16 +78,21 @@ addProf: any={};
        // Si aucune donnée n'est présente dans le local storage, initialisez-le avec vos données par défaut
    }
 
-   const dataEvaluation = localStorage.getItem('Evaluation');
-   if(dataEvaluation){
-   this.Evaluation = JSON.parse(dataEvaluation);
+   this.dataEvaluation = localStorage.getItem('evalue');
+   if(this.dataEvaluation){
+   this.userEvaluation = JSON.parse(this.dataEvaluation);
    }
-
+   else {
+          localStorage.setItem('evalue', JSON.stringify(this.Evaluation));
+   }
+  
 
 }
 
 
 addEvaluation(){
+
+  this.addProf.id = this.Evaluation.length + 1;
   this.Evaluation.push(this.addProf);
   this.saveEvaluation();
   this.addProf ={};
@@ -89,22 +100,16 @@ addEvaluation(){
  }
  
  saveEvaluation(){
-   localStorage.setItem('Evaluation', JSON.stringify(this.Evaluation));
+   localStorage.setItem('evalue', JSON.stringify(this.Evaluation));
  }
-// addEvaluation(){
-//   this.Evaluation.push(this.Evaluation);
-//   this.testEvaluation();
 
-// }
-
-
-//   testEvaluation(){
-//     localStorage.setItem('Evaluation', JSON.stringify(this.Evaluation));
-
-// //   this.Evaluation.push(this.Evaluation);
-// //   // this.storeEvaluation();
-// //  this.addProf ={}
-// }
+   // Methode de recherche automatique 
+   onSearch(){
+    // Recherche se fait selon le nom ou le prenom 
+    this.filteredElement = this.Evaluation.filter(
+      (elt:any) => (elt?.matiere.toLowerCase().includes(this.filterValue.toLowerCase())) || elt?.date.toLowerCase().includes(this.filterValue.toLowerCase())
+    );
+  }
 }
 
 

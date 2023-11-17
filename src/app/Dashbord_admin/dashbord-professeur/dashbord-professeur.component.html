@@ -24,7 +24,7 @@
         <div class="cardbx2">
           <i class='bx bxs-user-circle'></i>
           <div>
-            <p class="text-center">Enseignant/p>
+            <p class="text-center">Enseignant</p>
             <h3 class="text-center">2</h3>
           </div>
         </div>
@@ -83,6 +83,12 @@
               <label for="exampleFormControlInput1" class="form-label">Email address</label>
               <input type="email" name="email" class="form-control"  placeholder="name@example.com" [(ngModel)]="formDataregister.email">
             </div>
+            <select class="form-select"  name="matiere" [(ngModel)]="formDataregister.matiere">
+              <option selected>Open this select menu</option>
+              <option value="Html">HTML</option>
+              <option value="CSS">CSS</option>
+              <option value="Javascript">JAVASCRIPT</option>
+            </select>
             <div class="mb-3">
               <label for="password" class="form-label">Password</label>
               <input type="password" name="password" class="form-control" placeholder="Password" [(ngModel)]="formDataregister.password">

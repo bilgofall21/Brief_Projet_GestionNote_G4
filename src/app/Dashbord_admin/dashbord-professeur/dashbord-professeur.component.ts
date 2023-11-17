@@ -22,7 +22,8 @@ export class DashbordProfesseurComponent {
     nom: '',
     prenom: '',
     email: '',
-    password: ''
+    password: '',
+    matiere: '',
   }
 
   userid: any;
@@ -31,14 +32,15 @@ export class DashbordProfesseurComponent {
 
   Registerfunction(event: Event) {
     event.preventDefault();
-    if (this.formDataregister.nom !== '' && this.formDataregister.prenom !== '' && this.formDataregister.email !== '' && this.formDataregister.password !== '') {
+    if (this.formDataregister.nom !== '' && this.formDataregister.prenom !== '' && this.formDataregister.email !== '' && this.formDataregister.password !== '' && this.formDataregister.matiere!="") {
       let datastring = localStorage.getItem('Schooluser');
       this.existingData = datastring ? JSON.parse(datastring) : [];
       this.userid = this.existingData.length;
       let nomprof = this.formDataregister.nom
       let prenomprof = this.formDataregister.prenom;
       let emailprof = this.formDataregister.email;
-      let passwordprof = this.formDataregister.password
+      let passwordprof = this.formDataregister.password;
+      let matiereProf = this.formDataregister.matiere
 
 
       this.existingData.push({
@@ -53,8 +55,8 @@ export class DashbordProfesseurComponent {
         etat: '1',
         Matiere: [
           {
-            id: '',
-            matiere: ''
+            id:this.existingData.length+1,
+            matiere: matiereProf
           }
         ]
       });
@@ -76,6 +78,8 @@ export class DashbordProfesseurComponent {
       localStorage.setItem('Schooluser', JSON.stringify('Schooluser'));
     }
   }
+
+
 
   archiver(id: any) {
     alert(id);

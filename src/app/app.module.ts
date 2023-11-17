@@ -44,7 +44,8 @@ import { ColorhoverDirective } from './colorhover.directive';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

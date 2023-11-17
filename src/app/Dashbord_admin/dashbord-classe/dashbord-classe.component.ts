@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 
-
-
 @Component({
   selector: 'app-dashbord-classe',
   templateUrl: './dashbord-classe.component.html',
@@ -77,9 +75,7 @@ public storeclasse: any;
       });
     }
 
-     
-
-
+    
       // On vide les champs 
       // this.viderChapmsClasse();
       //   // localStorage.setItem('classe', JSON.stringify(this.classe));

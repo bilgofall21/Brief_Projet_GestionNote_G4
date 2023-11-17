@@ -8,65 +8,51 @@ import Swal from 'sweetalert2';
 })
 export class DashbordMatiereComponent implements OnInit {
 
-   public userMatiere: any;
-   public storeMatiere :any;
-   // la variable qui permet de boucler notre tableau 
+  public storeMatiere: any;
+
+  matiere: string="";
+  id:number = 0;
   
- // le dernier classe qui est ajouter 
-   // idDernierClasse: number = 0;
+  public Matiere: any[] = [
+    {
+      id: "",
+      matiere :"",
+    }
+  ]
+ 
+  ngOnInit(): void {
+  this.storeMatiere = localStorage.getItem('Matiere');
+  if (this.storeMatiere) {
+    // this.usersMat = JSON.parse(this.usersMat);
+    this.usersMat = JSON.parse(localStorage.getItem("Matiere") || "[]");
+    console.log(this.usersMat);
+    console.log(this.storeMatiere);
+
+  } else {
+    // Si aucune donnée n'est présente dans le local storage, initialisez-le avec vos données par défaut
+    localStorage.setItem('Matiere', JSON.stringify(this.Matiere));
+}
  
  
-   idMatiere:number= 0;
-   matiere: string="";
- 
+  }
+  public usersMat: any;
+  ajouterMatiere(){
+    let  matieres  = {
+     id: this.Matiere.length ++,
+     matiere:this.matiere,
   
-   public listeMatiere: any[] = [
-     {
-       id: "",
-       matiere: "",
-       effectif:''
-     }
-   ]
- 
- 
- 
- ngOnInit(): void {
- 
-   
-   this.storeclasse = localStorage.getItem('listeMatiere');
-   if (this.storeMatiere) {
-     this.userMatiere = JSON.parse(localStorage.getItem("classe") || "[]");
-     console.log(this.userMatiere)
-   } else {
-     // Si aucune donnée n'est présente dans le local storage, initialisez-le avec vos données par défaut
-     localStorage.setItem('listeMatiere', JSON.stringify(this.listeMatiere));
- }
- 
- }
- 
- 
- public storeclasse: any;
-   ajouterClasse(){
-      let listeMatiere = {
-       id: this.listeMatiere.length ++,
-       matiere:this.listeMatiere,
-      
-     }
-   
-  
-       // On ajoute l'objet dans la liste des classes
+   }  
     
-       this.userMatiere.push(listeMatiere);
- 
-      //  console.log(this.niveauClasse);
-      //  console.log(this.userClasse);
-      //  console.log(this.classe);
- 
- 
- 
+  // On ajoute l'objet dans la liste des classes
+    
+       this.usersMat.push(matieres);
+       
+       console.log(this.matiere);
+       console.log(this.id);
+       console.log(this.usersMat);
  
        // localStorage.setItem('classe', JSON.stringify(this.classe));
-       localStorage.setItem('listeMatiere', JSON.stringify(this.userMatiere));
+       localStorage.setItem('Matiere', JSON.stringify(this.usersMat));
  
         // Ferme le popup si on click sur Ok 
         Swal.fire({
@@ -75,4 +61,5 @@ export class DashbordMatiereComponent implements OnInit {
          icon: "success",
        });
      }
+
 }

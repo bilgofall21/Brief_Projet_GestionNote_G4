@@ -72,27 +72,39 @@ addProf: any={};
        // Si aucune donnée n'est présente dans le local storage, initialisez-le avec vos données par défaut
    }
 
-   this.storeEvaluation = localStorage.getItem('Evaluation');
-     if (this.storeEvaluation) {
-       this.Evaluation = JSON.parse(this.storeEvaluation);
-     } else {
-       // Si aucune donnée n'est présente dans le local storage, initialisez-le avec vos données par défaut
-       localStorage.setItem('Evaluation', JSON.stringify(this.userEvaluation));  
-       }
+   const dataEvaluation = localStorage.getItem('Evaluation');
+   if(dataEvaluation){
+   this.Evaluation = JSON.parse(dataEvaluation);
+   }
 
-       this.userEvaluation.push(this.addProf);;
-       console.log(this.Evaluation);
-       this.addProf ={}; 
-       // methode sauvegarde dans localstorage
-       this.addEvaluation();
+
 }
+
+
 addEvaluation(){
-  localStorage.setItem('Evaluation', JSON.stringify(this.userEvaluation));
-  // this.storeEvaluation();
+  this.Evaluation.push(this.addProf);
+  this.saveEvaluation();
+  this.addProf ={};
  
+ }
+ 
+ saveEvaluation(){
+   localStorage.setItem('Evaluation', JSON.stringify(this.Evaluation));
+ }
+// addEvaluation(){
+//   this.Evaluation.push(this.Evaluation);
+//   this.testEvaluation();
 
-}
+// }
 
+
+//   testEvaluation(){
+//     localStorage.setItem('Evaluation', JSON.stringify(this.Evaluation));
+
+// //   this.Evaluation.push(this.Evaluation);
+// //   // this.storeEvaluation();
+// //  this.addProf ={}
+// }
 }
 
 

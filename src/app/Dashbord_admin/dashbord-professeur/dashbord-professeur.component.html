@@ -48,13 +48,13 @@
       </tr>
     </thead>
     <tbody *ngFor ='let professeur of usersdata'>
-      <tr *ngIf="professeur.role==2">
+      <tr *ngIf="professeur.role==2 && professeur.etat==1">
         <th scope="row">{{professeur.id}}</th>
         <td>{{professeur.nom}}</td>
         <td>{{professeur.prenom}}</td>
         <td>{{professeur.email}}</td>
         <td><button class="btn btn" id="btn2" (click)="archiver(professeur.id)">Archiver</button></td>
-        <td><button class="btn btn" id="btn1">Desactivé</button></td>
+        <td><button class="btn btn" id="btn1" (click)="desactive(professeur.id)">Desactivé</button></td>
 
       </tr>
     </tbody>

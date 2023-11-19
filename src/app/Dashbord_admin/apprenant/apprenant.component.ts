@@ -141,10 +141,20 @@ saveDataLocal (){
   localStorage.setItem('Schooluser', JSON.stringify(this.usersdata));
 }
 selectElement (element : any){
-this.emelementSelectioner = element;
+this.emelementSelectioner = {...element};
 }
+index : any;
+modeifierElement (){
+ if(this.emelementSelectioner){
+ this.index= this.usersdata.findIdex((e: { id: any; }) => e.id === this.emelementSelectioner.id);
 
-
+ if(this.index !== -1){
+  this.usersdata[this.index] = {...this.emelementSelectioner};
+  this.saveDataLocal();
+ }
+};
+this.emelementSelectioner = null;
+}
 
 }
 

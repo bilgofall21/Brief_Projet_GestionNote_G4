@@ -24,6 +24,7 @@
                       <th appCouleurfond class="text-white fw-bold">activer</th>
                       <th appCouleurfond class="text-white fw-bold">desactiver</th>
                       <th appCouleurfond class="text-white fw-bold">detail</th>
+                      <th appCouleurfond class="text-white fw-bold">modifier</th>
 
 
                   </tr>
@@ -40,22 +41,26 @@
                       <td>
                          <div class="d-flex justify-content-evenly">
                         <button class="btn btn-outline-success">
-                          <i class="bi bi-person-fill-x" style="font-size: 20px;"></i>
+                          <i class="bi bi-person-fill-up" style="font-size: 20px;" (click)="activerApprenant(element)"></i>
                         </button>
                       </div>
                        </td>
                       <td>
                          <div class="d-flex justify-content-evenly">
                           <button class="btn btn-outline-danger ">
-                            <i class="bi bi-person-fill-up" style="font-size: 20px;"></i>
+                            <i class="bi bi-person-fill-x" style="font-size: 20px;" (click)="desactiverApprenant(element)" ></i>
                           </button>
                       </div>
                        </td>
                       <td>
                         <div class="d-flex justify-content-center">
-                          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal-detail" (click)="selectElement (element)"  ><i class="bi bi-person-vcard"style="font-size: 20px;"  ></i></button>
+                          <button class="btn text-white" data-bs-toggle="modal" data-bs-target="#exampleModal-detail" appCouleurfond (click)="selectElement (element)"  ><i class="bi bi-person-vcard"style="font-size: 20px;"  ></i></button>
                         </div>
-
+                      </td>
+                      <td>
+                        <div class="d-flex justify-content-center">
+                          <button class="btn text-white" data-bs-toggle="modal" data-bs-target="#exampleModal-modif" appCouleurfond (click)="selectElement (element)"> <i class="bi bi-pencil-fill" style="font-size: 20px;"  ></i> </button>
+                        </div>
                       </td>
                   </tr>
 
@@ -77,7 +82,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" accordion-header></button>
       </div>
       <div class="modal-body">
-        <form action="" >
+        <form action=""  >
           <div class="col-md-12">
             <label for="prenom" class="form-label">Prenom:</label>
             <input type="text" name="prenom" class="form-control" id="validationCustom01" placeholder="Prenom" required [(ngModel)]="formuStudent.prenom"  >
@@ -120,6 +125,8 @@
 
 <!-- fin modal ajout -->
 
+<!-- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
 <!-- modal detaiil -->
 <div class="modal fade" id="exampleModal-detail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" >
@@ -134,7 +141,7 @@
           <p class="text-black fw-bold"> {{emelementSelectioner.email}}</p>
           <p class="text-black fw-bold"> {{emelementSelectioner.annee}}</p>
           <div class=" d-flex justify-content-around pt-4">
-          <button class="btn btn-primary" id="boutons"  data-bs-toggle="modal" data-bs-target="#exampleModal-modif" >Modifier</button>
+          <button class="btn btn-primary" id="boutons"  data-bs-toggle="modal"  >Modifier</button>
 
               <button type="button" class="btn btn-secondary mb-4" data-bs-dismiss="modal">Close</button>
 
@@ -151,7 +158,9 @@
 
 <!-- fin modal detail -->
 
-<!-- modal Modifier -->
+<!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+<!-- modall modifier-->
 
 <div class="modal fade" id="exampleModal-modif" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -160,38 +169,38 @@
         <h5 class="modal-title" id="exampleModalLabel">Apprenant</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" accordion-header></button>
       </div>
-      <div class="modal-body">
-        <form action="" >
+      <div class="modal-body" *ngIf="emelementSelectioner" >
+        <form action="" (ngSubmit)="modifierElement()" >
           <div class="col-md-12">
             <label for="prenom" class="form-label">Prenom:</label>
-            <input type="text" name="prenom" class="form-control" id="validationCustom01" placeholder="Prenom" required [(ngModel)]="formuStudent.prenom"  >
+            <input type="text" name="prenom" class="form-control" id="validationCustom01" placeholder="Prenom" required [(ngModel)]="emelementSelectioner.prenom"  >
           </div>
           <div class="col-md-12">
             <label for="nom" class="form-label">Nom:</label>
-            <input type="text" name="nom" class="form-control" id="validationCustom01" placeholder="Nom" required [(ngModel)]="formuStudent.nom" >
+            <input type="text" name="nom" class="form-control" id="validationCustom01" placeholder="Nom" required [(ngModel)]="emelementSelectioner.nom" >
           </div>
           <div class="col-md-12">
             <label for="email" class="form-label">Email:</label>
-            <input type="email" name="email" class="form-control" id="validationCustom01" placeholder="email" required [(ngModel)]="formuStudent.email" >
+            <input type="email" name="email" class="form-control" id="validationCustom01" placeholder="email" required [(ngModel)]="emelementSelectioner.email" >
           </div>
           <div class="col-md-12">
             <label for="password" class="form-label">Password:</label>
-            <input type="text" name="password" class="form-control" id="password" placeholder="Password" required [(ngModel)]="formuStudent.password" >
+            <input type="text" name="password" class="form-control" id="password" placeholder="Password" required [(ngModel)]="emelementSelectioner.password" >
           </div>
           <div class="col-md-12">
             <label for="adresse" class="form-label">Annee:</label>
-            <input type="date" name="annee" id="annee" placeholder="annee" [(ngModel)]="formuStudent.annee" >
+            <input type="date" name="annee" id="annee" placeholder="annee" [(ngModel)]="emelementSelectioner.annee" >
           </div>
           <div class="col-md-12">
             <label for="adresse" class="form-label">Niveau:</label>
-            <select class="form-select form-select-sm mb-3" name="niveau" aria-label="Large select example" [(ngModel)]="formuStudent.niveau" >
+            <select class="form-select form-select-sm mb-3" name="niveau" aria-label="Large select example" [(ngModel)]="emelementSelectioner.niveau" >
               <option selected>choisis le niveau</option>
               <option value="L1">L1</option>
               <option value="L2">L2</option>
               <option value="L3">L3</option>
             </select>
           </div>
-          <button class="btn btn-primary" type="submit" (click)="modeifierElement ()" >modifier</button>
+          <button class="btn btn-primary" type="submit"  >Modifier</button>
         </form>
       </div>
       <div class="modal-footer">
@@ -202,6 +211,6 @@
   </div>
 </div>
 
-<!-- Fin modal Modifier -->
+<!-- fin modal modifier -->
 
 

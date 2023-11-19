@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-apprenant',
@@ -120,6 +122,7 @@ ngOnInit(): void {
 
 }
 
+// methode pour ajouter des elements
 
 SoumettreFormlaire (){
   // assiger sur le Local des id pour chak apprenant
@@ -134,31 +137,74 @@ SoumettreFormlaire (){
   this.formuStudent = {};
   // methode sauvegarde dans localstorage
   this.saveDataLocal();
-  // vider le formulaire apre ajou
+
 }
 // fonction pour stocker donne ajouter sur local storage au submit
 saveDataLocal (){
   localStorage.setItem('Schooluser', JSON.stringify(this.usersdata));
 }
+// methode pour selectionnenr l'element en foction de son id
 selectElement (element : any){
 this.emelementSelectioner = {...element};
 }
+
+// :::::: Modificationner element selectionner:::::
 index : any;
-modeifierElement (){
- if(this.emelementSelectioner){
- this.index= this.usersdata.findIdex((e: { id: any; }) => e.id === this.emelementSelectioner.id);
-
- if(this.index !== -1){
+modifierElement (): void{
+  if(this.emelementSelectioner){
+//  recherche de l'index dans le tableau
+this.index =this.usersdata.findIndex((e: { id: any; }) =>e.id === this.emelementSelectioner.id);
+// modifier l'element dans le tableau
+if(this.index !== -1){
+  // mettre a jour l'elment selectionner
   this.usersdata[this.index] = {...this.emelementSelectioner};
-  this.saveDataLocal();
- }
+  // sauvegarder  des modif dans le stockage local
+  this.saveDataLocal ()
 };
+};
+// reinitialiser element selectioner
 this.emelementSelectioner = null;
+};
+
+activerApprenant(id : any){
+
 }
 
+// :::::::::::Desactiver element
+desactiverApprenant (id : any){
+  let desactiveid = id;
+  Swal.fire({
+    title: "Voulez vous vraiment desactivé ce compte?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Oui,j'approuve!"
+  }).then((result) => {
+    if (result.isConfirmed) {
+    let datastring = localStorage.getItem('Schooluser');
+    let existingData = datastring ? JSON.parse(datastring) : [];
+    console.log(existingData);
+    // @ts-ignore
+    let userFound = this.usersdata.find(usersdata => usersdata.id === desactiveid);
+    if (userFound) {
+      userFound.etat = '0';
+      localStorage.setItem('Schooluser', JSON.stringify(this.usersdata));
+      // console.log(existingData)
+    }
+    Swal.fire({
+    title: "Compte desactivé!",
+    text: "Ce Utilisateur a été desactivé .",
+    icon: "success"
+    });
+  }
+  });
+
+  }
+  }
 
 
-}
+
 
 
 

@@ -27,7 +27,12 @@ export class DashbordProfesseurComponent {
   public userEvaluation: any;
 
   public storeNotes: any;
-  public usersNotes: any
+  public usersNotes: any;
+
+  public detailenseignant: any;
+  public userFound: any;
+
+  public xuser: any=0;
   // Fin variable
 
   // variable utilisé pour stocker les id des users
@@ -42,6 +47,7 @@ export class DashbordProfesseurComponent {
     email: '',
     password: '',
     matiere: '',
+    niveau:''
   }
 
   // Constructeur qui nous permet de naviguer et d'utiliser nos services
@@ -56,7 +62,7 @@ export class DashbordProfesseurComponent {
     } else {
       // Si aucune donnée n'est présente dans le local storage, initialisez-le avec vos données par défaut
       localStorage.setItem('Schooluser', JSON.stringify(this.usersdata));
-     }
+    }
   }
 
   Registerfunction(event: Event) {
@@ -68,7 +74,8 @@ export class DashbordProfesseurComponent {
       let prenomprof = this.formDataregister.prenom;
       let emailprof = this.formDataregister.email;
       let passwordprof = this.formDataregister.password;
-      let matiereProf = this.formDataregister.matiere
+      let matiereProf = this.formDataregister.matiere;
+      let niveauProf = this.formDataregister.niveau;
 
       this.usersdata.push({
         id: this.usersdata.length + 1,
@@ -76,7 +83,7 @@ export class DashbordProfesseurComponent {
         prenom: prenomprof,
         email: emailprof,
         password: passwordprof,
-        niveau: '',
+        niveau: niveauProf,
         annee: '',
         role: '2',
         etat: '1',
@@ -88,13 +95,20 @@ export class DashbordProfesseurComponent {
         ]
       });
       localStorage.setItem('Schooluser', JSON.stringify(this.usersdata));
-      window.location.reload();
+      // window.location.reload();
     }
   }
 
-  archiver(id: any) {
-    alert(id);
+
+  Detail(id: any){
+    this.xuser++;
+    // @ts-ignore
+    this.userFound = this.usersdata.find(usersdata => usersdata.id === id);
+    if (this.userFound) {
+     return this.userFound;
+    }
   }
+
 
   desactive(id: any) {
     let desactiveid = id;

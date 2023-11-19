@@ -12,7 +12,7 @@ h1{
     text-align: center;
 }
 #btn1{
-    background-color: #457A74;
+    background-color: #023b3b;
 }
 .titre{
     background-color: #ffdb58;
@@ -69,4 +69,7 @@ tbody{
   }
   .card{
     width: 25rem;
+  }
+  #image{
+    width: 300px;
   }

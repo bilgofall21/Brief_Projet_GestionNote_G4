@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-user-professeur',
@@ -101,10 +102,10 @@ dataClasse : any;
    if (this.dataEvaluation){
    this.userEvaluation = JSON.parse(this.dataEvaluation);
    }
-   else { 
-          localStorage.setItem('evalue', JSON.stringify(this.Evaluation));
+  //  else { 
+  //         localStorage.setItem('evalue', JSON.stringify(this.Evaluation));
           
-   }
+  //  }
 
    //localStorage classes
    const dataClasse = localStorage.getItem('classe');

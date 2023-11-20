@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-apprenant',
@@ -6,6 +9,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./apprenant.component.css']
 })
 export class ApprenantComponent implements OnInit {
+modeifierElement() {
+throw new Error('Method not implemented.');
+}
 
 public Schooluser: any[] = [
   {
@@ -120,8 +126,9 @@ ngOnInit(): void {
 
 }
 
+// methode pour ajouter des elements
 
-SoumettreFormlaire (){
+SoumettreFormlaire (validForm : NgForm){
   // assiger sur le Local des id pour chak apprenant
   this.formuStudent.id = this.usersdata.length + 1;
 
@@ -134,29 +141,48 @@ SoumettreFormlaire (){
   this.formuStudent = {};
   // methode sauvegarde dans localstorage
   this.saveDataLocal();
-  // vider le formulaire apre ajou
+
 }
 // fonction pour stocker donne ajouter sur local storage au submit
 saveDataLocal (){
   localStorage.setItem('Schooluser', JSON.stringify(this.usersdata));
 }
+// methode pour selectionnenr l'element en foction de son id
 selectElement (element : any){
 this.emelementSelectioner = {...element};
 }
+
+
+
+
+// :::::: Modificationner element selectionner:::::
 index : any;
-modeifierElement (){
- if(this.emelementSelectioner){
- this.index= this.usersdata.findIdex((e: { id: any; }) => e.id === this.emelementSelectioner.id);
-
- if(this.index !== -1){
+modifierElement (modifForm : NgForm ): void{
+  if(this.emelementSelectioner){
+//  recherche de l'index dans le tableau
+this.index =this.usersdata.findIndex((e: { id: any; }) =>e.id === this.emelementSelectioner.id);
+// modifier l'element dans le tableau
+if(this.index !== -1){
+  // mettre a jour l'elment selectionner
   this.usersdata[this.index] = {...this.emelementSelectioner};
-  this.saveDataLocal();
- }
+  // sauvegarder  des modif dans le stockage local
+  this.saveDataLocal ()
 };
+};
+// reinitialiser element selectioner
 this.emelementSelectioner = null;
+};
 }
 
-}
+
+
+
+// :::::::::::Desactiver element
+
+
+
+
+
 
 
 

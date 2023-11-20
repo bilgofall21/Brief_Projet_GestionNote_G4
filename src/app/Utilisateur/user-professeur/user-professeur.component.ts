@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-user-professeur',
@@ -17,6 +18,17 @@ export class UserProfesseurComponent implements OnInit {
       matiere: '',
       professeur: '',
       niveau: ''
+    }
+  ]
+  public classes:  any[] = [
+    {
+      id: '',
+      prenom: '',
+      nom: '',
+      nomClasse: '',
+      noteEleve: '',
+
+    
     }
   ]
 
@@ -43,6 +55,11 @@ export class UserProfesseurComponent implements OnInit {
   public userfoundid: any;
   public useretat: any;
 
+
+  public classUser: any;
+
+  
+
   //valeur du filter qui correspond a celui du champs recherche
   filterValue = '';
   //les element trouver
@@ -51,7 +68,10 @@ export class UserProfesseurComponent implements OnInit {
 
 addProf: any={};
 dataEvaluation : any;
-  
+
+//variable classe
+maClasse: any={};
+dataClasse : any;
   ngOnInit(): void {
     console.log(this.storedUsers);
     this.storedUsers = localStorage.getItem('Schooluser');
@@ -79,11 +99,21 @@ dataEvaluation : any;
    }
 
    this.dataEvaluation = localStorage.getItem('evalue');
-   if(this.dataEvaluation){
+   if (this.dataEvaluation){
    this.userEvaluation = JSON.parse(this.dataEvaluation);
    }
+  //  else { 
+  //         localStorage.setItem('evalue', JSON.stringify(this.Evaluation));
+          
+  //  }
+
+   //localStorage classes
+   const dataClasse = localStorage.getItem('classe');
+if(dataClasse){
+this.classes = JSON.parse(dataClasse);
+}
    else {
-          localStorage.setItem('evalue', JSON.stringify(this.Evaluation));
+          localStorage.setItem('classe', JSON.stringify(this.classes));
    }
   
 
@@ -110,6 +140,19 @@ addEvaluation(){
       (elt:any) => (elt?.matiere.toLowerCase().includes(this.filterValue.toLowerCase())) || elt?.date.toLowerCase().includes(this.filterValue.toLowerCase())
     );
   }
+
+  //recuperation des objets de la classe
+  
+  addeClasse(){
+    this.classes.push(this.maClasse);
+    this.saveClasse();
+    this.maClasse ={};
+   
+   }
+   
+   saveClasse(){
+     localStorage.setItem('classe', JSON.stringify(this.classes));
+   }
 }
 
 

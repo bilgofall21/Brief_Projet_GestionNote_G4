@@ -55,6 +55,8 @@ public Schooluser: any[] = [
   public userfoundid: any;
   public useretat: any;
 
+  public tailleenseignant: any;
+  public tailleApprenant: any;
 
 // modele pour formulaire
 
@@ -89,6 +91,10 @@ ngOnInit(): void {
      // Si aucune donnée n'est présente dans le local storage, initialisez-le avec vos données par défaut
      localStorage.setItem('Schooluser', JSON.stringify(this.Schooluser));
  }
+
+ this.tailleenseignant = this.enseignantLength();
+    this.tailleApprenant = this.ApprenantLength();
+
 
  this.storeMatiere = localStorage.getItem('Matiere');
 
@@ -172,12 +178,33 @@ if(this.index !== -1){
 // reinitialiser element selectioner
 this.emelementSelectioner = null;
 };
+
+enseignantLength() {
+  let enseignanttaille = 0;
+  for (let i = 0; i < this.usersdata.length; i++){
+    if (this.usersdata[i].role == 2) {
+      enseignanttaille ++;
+    }
+  }
+  return enseignanttaille;
+}
+
+ApprenantLength() {
+  let Apprenanttaille = 0;
+  for (let i = 0; i < this.usersdata.length; i++){
+    if (this.usersdata[i].role == 3) {
+      Apprenanttaille ++;
+    }
+  }
+  return Apprenanttaille;
 }
 
 
 
+}
 
-// :::::::::::Desactiver element
+
+
 
 
 

@@ -41,14 +41,14 @@
                       <td>
                          <div class="d-flex justify-content-evenly">
                         <button class="btn btn-outline-success">
-                          <i class="bi bi-person-fill-up" style="font-size: 20px;" (click)="activerApprenant(element)"></i>
+                          <i class="bi bi-person-fill-up" style="font-size: 20px;"></i>
                         </button>
                       </div>
                        </td>
                       <td>
                          <div class="d-flex justify-content-evenly">
                           <button class="btn btn-outline-danger ">
-                            <i class="bi bi-person-fill-x" style="font-size: 20px;" (click)="desactiverApprenant(element)" ></i>
+                            <i class="bi bi-person-fill-x" style="font-size: 20px;" ></i>
                           </button>
                       </div>
                        </td>
@@ -83,23 +83,53 @@
         <h5 class="modal-title" id="exampleModalLabel">Apprenant</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" accordion-header></button>
       </div>
-      <div class="modal-body">
-        <form action=""  >
+      <div class="modal-body" novalidate>
+        <form action="" (ngSubmit)="SoumettreFormlaire (validForm)"  #validForm="ngForm" >
           <div class="col-md-12">
             <label for="prenom" class="form-label">Prenom:</label>
-            <input type="text" name="prenom" class="form-control" id="validationCustom01" placeholder="Prenom" required [(ngModel)]="formuStudent.prenom"  >
+            <input type="text" name="prenom" class="form-control" id="validationCustom01" placeholder="Prenom"  [(ngModel)]="formuStudent.prenom" required  #prenomVerif="ngModel" [ngClass]="{'is-invalid' : prenomVerif.touched && !prenomVerif.valid}" >
+            <div class="invalid-feedback">
+              <span *ngIf="prenomVerif.errors">
+                veillez entrer votre prenom
+              </span>
+            </div>
           </div>
           <div class="col-md-12">
             <label for="nom" class="form-label">Nom:</label>
-            <input type="text" name="nom" class="form-control" id="validationCustom01" placeholder="Nom" required [(ngModel)]="formuStudent.nom" >
+            <input type="text" name="nom" class="form-control" id="validationCustom01" placeholder="Nom"  [(ngModel)]="formuStudent.nom" required  #nomVerif="ngModel" [ngClass]="{'is-invalid': nomVerif.touched && !nomVerif.valid}">
+            <div class="invalid-feedback">
+              <span *ngIf="nomVerif.errors">
+                veillez entrer votre nom
+              </span>
+            </div>
+
           </div>
           <div class="col-md-12">
             <label for="email" class="form-label">Email:</label>
-            <input type="email" name="email" class="form-control" id="validationCustom01" placeholder="email" required [(ngModel)]="formuStudent.email" >
+            <input type="email" name="email" class="form-control" id="validationCustom01" placeholder="email" required email [(ngModel)]="formuStudent.email" #emailVerif="ngModel"
+            [ngClass]="{'is-invalid':emailVerif.touched && !emailVerif.valid}">
+            <div class="invalid-feedback">
+              <span *ngIf="emailVerif.errors?.['required']">
+                veillez renseiger l'email
+              </span>
+              <span *ngIf="emailVerif.errors?.['email']">
+                L'email n'est pas comforme
+              </span>
+            </div>
           </div>
           <div class="col-md-12">
             <label for="password" class="form-label">Password:</label>
-            <input type="text" name="password" class="form-control" id="password" placeholder="Password" required [(ngModel)]="formuStudent.password" >
+            <input type="text" name="password" class="form-control" id="password" placeholder="Password" required minlength="5" [(ngModel)]="formuStudent.password" #passVerif="ngModel"
+            [ngClass]="{'is-invalid':passVerif.touched && !passVerif.valid}" >
+            <div class="invalid-feedback">
+              <span *ngIf="passVerif.errors?.['required']">
+                veiller entrer le mot de pass
+              </span>
+              <span *ngIf="passVerif.errors?.['minlength']">
+                mot de pass minimum 5 caratères
+              </span>
+
+            </div>
           </div>
           <div class="col-md-12">
             <label for="adresse" class="form-label">Annee:</label>
@@ -107,14 +137,20 @@
           </div>
           <div class="col-md-12">
             <label for="adresse" class="form-label">Niveau:</label>
-            <select class="form-select form-select-sm mb-3" name="niveau" aria-label="Large select example" [(ngModel)]="formuStudent.niveau" >
+            <select class="form-select form-select-sm mb-3" name="niveau" aria-label="Large select example" required="" [(ngModel)]="formuStudent.niveau" #niveauVerif="ngModel"
+            [ngClass]="{'is-invalid':niveauVerif.touched && !niveauVerif.valid}" >
+            <div class="invalid-feedback">
+              <span *ngIf="niveauVerif.errors">
+              ajouter le niveau
+              </span>
+            </div>
               <option selected>choisis le niveau</option>
               <option value="L1">L1</option>
               <option value="L2">L2</option>
               <option value="L3">L3</option>
             </select>
           </div>
-          <button class="btn btn-primary" type="submit" (click)="SoumettreFormlaire ()" >Ajouter</button>
+          <button class="btn btn-primary" type="submit" [disabled]="!validForm.valid"  >Ajouter</button>
         </form>
       </div>
       <div class="modal-footer">
@@ -170,40 +206,79 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" accordion-header></button>
       </div>
       <div class="modal-body" *ngIf="emelementSelectioner" >
-        <form action="" (ngSubmit)="modifierElement()" >
+        <form action="" (ngSubmit)="modifierElement (modifForm)"  #modifForm="ngForm" >
           <div class="col-md-12">
             <label for="prenom" class="form-label">Prenom:</label>
-            <input type="text" name="prenom" class="form-control" id="validationCustom01" placeholder="Prenom" required [(ngModel)]="emelementSelectioner.prenom"  >
+            <input type="text" name="prenom" class="form-control" id="validationCustom01" placeholder="Prenom" required [(ngModel)]="emelementSelectioner.prenom" #modifPrenom="ngModel"
+            [ngClass]="{'is-invalid': modifPrenom.touched && !modifPrenom.valid}">
+            <div class="invalid-feedback">
+              <span *ngIf="modifPrenom.errors">
+              reineigner le prenom
+              </span>
+            </div>
           </div>
           <div class="col-md-12">
             <label for="nom" class="form-label">Nom:</label>
-            <input type="text" name="nom" class="form-control" id="validationCustom01" placeholder="Nom" required [(ngModel)]="emelementSelectioner.nom" >
+            <input type="text" name="nom" class="form-control" id="validationCustom01" placeholder="Nom" required [(ngModel)]="emelementSelectioner.nom" #modifNom="ngModel"
+           [ngClass]="{'is-invalid' : modifNom.touched && !modifNom.valid}">
+           <div class="invalid-feedback">
+            <span *ngIf="modifNom.errors">
+              veiller reseigner le nom
+            </span>
+           </div>
           </div>
           <div class="col-md-12">
             <label for="email" class="form-label">Email:</label>
-            <input type="email" name="email" class="form-control" id="validationCustom01" placeholder="email" required [(ngModel)]="emelementSelectioner.email" >
+            <input type="email" name="email" class="form-control" id="validationCustom01" placeholder="email" required email [(ngModel)]="emelementSelectioner.email" #modifEmail="ngModel"
+            [ngClass]="{'is-invalid' : modifEmail.touched &&  !modifEmail.valid}">
+            <div class="invalid-feedback">
+              <span *ngIf="modifEmail.errors?.['required']">
+                veiller mettre l'email
+              </span>
+              <span *ngIf="modifEmail.errors?.['email']">
+                format email invalid
+              </span>
+            </div>
           </div>
           <div class="col-md-12">
             <label for="password" class="form-label">Password:</label>
-            <input type="text" name="password" class="form-control" id="password" placeholder="Password" required [(ngModel)]="emelementSelectioner.password" >
+            <input type="text" name="password" class="form-control" id="password" placeholder="Password" required minlength="5" [(ngModel)]="emelementSelectioner.password" #modifPass="ngModel"
+            [ngClass]="{'is-invalid':modifPass.touched && !modifPass.valid}">
+            <div class="invalid-feedback">
+              <span *ngIf="modifPass.errors?.['required']">
+              veiller renseiger le mot de pass
+              </span>
+              <span *ngIf="modifPass.errors?.['minlength']">
+              Mot de pass minimum 5 caractères
+              </span>
+            </div>
           </div>
           <div class="col-md-12">
             <label for="adresse" class="form-label">Annee:</label>
-            <input type="date" name="annee" id="annee" placeholder="annee" [(ngModel)]="emelementSelectioner.annee" >
+            <input type="date" name="annee" id="annee" placeholder="annee" [(ngModel)]="emelementSelectioner.annee" required #modifAnnee="ngModel" [ngClass]="{'is-invalid': modifAnnee.touched && !modifAnnee.valid}" >
+            <div class="invalid-feedback">
+              <span *ngIf="modifAnnee.errors">
+                vailler renseigner l'annee
+
+              </span>
+            </div>
           </div>
           <div class="col-md-12">
             <label for="adresse" class="form-label">Niveau:</label>
-            <select class="form-select form-select-sm mb-3" name="niveau" aria-label="Large select example" [(ngModel)]="emelementSelectioner.niveau" >
+            <select class="form-select form-select-sm mb-3" name="niveau" aria-label="Large select example" [(ngModel)]="emelementSelectioner.niveau" required  #modifNiveau="ngModel" [ngClass]="{'is-invalid': modifNiveau.touched && !modifNiveau.valid}" >
+              <div class="invalid-feedback">
+                <span *ngIf="modifNiveau.errors">
+                  vailler renseigner lE Niveau
+
+                </span>
+              </div>
               <option selected>choisis le niveau</option>
               <option value="L1">L1</option>
               <option value="L2">L2</option>
               <option value="L3">L3</option>
             </select>
           </div>
-
-          <button class="btn btn-primary" type="submit"  >Modifier</button>
-
-          <button class="btn btn-primary" type="submit" (click)="modeifierElement ()" >modifier</button>
+          <button class="btn btn-primary" type="submit"  [disabled]="!modifForm.valid">modifier</button>
 
         </form>
       </div>

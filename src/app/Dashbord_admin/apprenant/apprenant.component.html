@@ -31,8 +31,8 @@
               </thead>
               <tfoot>
               </tfoot>
-              <tbody>
-                  <tr *ngFor="let element of usersdata " >
+              <tbody *ngFor="let element of usersdata " >
+                  <tr *ngIf="element.role==3 && element.etat==1" >
                       <td > {{element.prenom}} </td>
                       <td>{{element.nom}} </td>
                       <td>{{element.email}} </td>
@@ -178,7 +178,7 @@
           <p class="text-black fw-bold"> {{emelementSelectioner.annee}}</p>
           <div class=" d-flex justify-content-around pt-4">
 
-          <button class="btn btn-primary" id="boutons"  data-bs-toggle="modal"  >Modifier</button>
+          
 
               <button type="button" class="btn btn-secondary mb-4" data-bs-dismiss="modal">Close</button>
 

@@ -83,7 +83,7 @@
                        </td>
                       <td>
                          <div class="d-flex justify-content-evenly">
-                          <button class="btn btn-outline-danger ">
+                          <button class="btn btn-outline-danger " (click)="desactiver(element.id)">
                             <i class="bi bi-person-fill-x" style="font-size: 20px;" ></i>
                           </button>
                       </div>
@@ -205,7 +205,7 @@
     <div class="modal-content" >
       <div class="modal-body" appCouleurfond>
         <div class="card-container" appColorhover id="detail" *ngIf="emelementSelectioner">
-          <img class="round" src="https://randomuser.me/api/portraits/women/79.jpg" alt="user" />
+          <img class="round" src="https://img.freepik.com/psd-premium/avatar-masculin-remise-diplomes-rendu-3d_52659-1060.jpg?w=740" alt="user" />
           <h3 class="text-black fw-bold"> {{emelementSelectioner.prenom}}  {{emelementSelectioner.nom}} </h3>
           <h6  class="text-black fw-bold"> {{emelementSelectioner.niveau}}</h6>
           <p class="text-black fw-bold"> {{emelementSelectioner.email}}</p>

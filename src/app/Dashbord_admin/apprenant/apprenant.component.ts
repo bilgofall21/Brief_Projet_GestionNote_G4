@@ -200,6 +200,39 @@ ApprenantLength() {
 }
 
 
+desactiver(id: any) {
+  let desactiveid = id;
+  Swal.fire({
+    title: "Voulez vous vraiment desactivé ce compte?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Oui,j'approuve!"
+  }).then((result) => {
+    if (result.isConfirmed) {
+    let datastring = localStorage.getItem('Schooluser');
+    let existingData = datastring ? JSON.parse(datastring) : [];
+    // @ts-ignore
+    let userFound = this.usersdata.find(usersdata => usersdata.id === desactiveid);
+    if (userFound) {
+      userFound.etat = '0';
+      localStorage.setItem('Schooluser', JSON.stringify(this.usersdata));
+      // console.log(existingData)
+    }
+    Swal.fire({
+    title: "Compte desactivé!",
+    text: "Ce Utilisateur a été desactivé .",
+    icon: "success"
+    });
+  }
+  });
+}
+
+
+
+
+
 
 }
 
